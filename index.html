@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envio de Documentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Envie seu Documento</h1>
+        <p>Selecione o tipo de documento para enviar:</p>
+
+        <button class="document-btn" onclick="selectDocument('CNH')">CNH</button>
+        <button class="document-btn" onclick="selectDocument('RG')">RG</button>
+
+        <div id="instructions" class="hidden">
+            <p id="instructionText"></p>
+        </div>
+
+        <div id="camera" class="hidden">
+            <video id="video" autoplay></video>
+            <div id="overlay">
+                <div id="frame"></div>
+            </div>
+            <button id="capture" class="action-btn" onclick="capturePhoto()">Tirar Foto</button>
+        </div>
+
+        <canvas id="canvas" class="hidden"></canvas>
+
+        <div id="result" class="hidden">
+            <p id="resultText">Verifique se os dados estão legíveis antes de enviar.</p>
+            <button id="retry" class="action-btn hidden" onclick="retryCapture()">Tentar Novamente</button>
+            <a id="sendWhatsApp" class="action-btn hidden" href="#" target="_blank">Enviar pelo WhatsApp</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
