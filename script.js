@@ -29,11 +29,15 @@ function startCamera() {
 }
 
 function capturePhoto() {
+    // Captura a imagem do vídeo e a coloca no canvas
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
+    // Exibe a mensagem de verificação de legibilidade
     document.querySelector("#resultText").innerText = "Verifique se os dados estão legíveis antes de enviar.";
+    
+    // Habilita o botão de envio via WhatsApp
     enableWhatsAppButton();
     document.querySelector("#result").classList.remove("hidden");
 }
@@ -41,12 +45,24 @@ function capturePhoto() {
 function enableWhatsAppButton() {
     let sendButton = document.querySelector("#sendWhatsApp");
     sendButton.classList.remove("hidden");
-    let imageURL = canvas.toDataURL(); // Captura a imagem do canvas em Base64
 
-    const whatsappNumber = "5511943471217"; 
+    // Converte a imagem capturada em uma URL Base64
+    let imageDataUrl = canvas.toDataURL("image/jpeg");
+    
+    // Número de WhatsApp para envio
+    const whatsappNumber = "5511943471217";
+    
+    // Mensagem a ser enviada
     const message = `Olá, estou enviando a foto do meu documento (${selectedDocument}) conforme solicitado.`;
 
-    sendButton.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+    // Configura o link do WhatsApp com a mensagem e o número
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+
+    // Atribui o link ao botão
+    sendButton.href = whatsappUrl;
+
+    // Mensagem informativa (o WhatsApp não permite anexar imagens diretamente via link de API)
+    document.querySelector("#resultText").innerText += "\nA imagem não pode ser enviada diretamente, por favor, anexe a imagem manualmente no WhatsApp.";
 }
 
 function retryCapture() {
