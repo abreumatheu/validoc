@@ -19,7 +19,7 @@
         </div>
 
         <div id="camera" class="hidden">
-            <video id="video" autoplay></video>
+            <video id="video" autoplay playsinline></video>
             <div id="overlay">
                 <div id="frame"></div>
             </div>
@@ -30,7 +30,6 @@
 
         <div id="result" class="hidden">
             <p id="resultText">Verifique se os dados estão legíveis antes de enviar.</p>
-            <button id="retry" class="action-btn hidden" onclick="retryCapture()">Tentar Novamente</button>
             <a id="sendWhatsApp" class="action-btn hidden" href="#" target="_blank">Enviar pelo WhatsApp</a>
         </div>
     </div>

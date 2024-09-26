@@ -19,7 +19,7 @@ function selectDocument(documentType) {
 }
 
 function startCamera() {
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
         .then(function (stream) {
             video.srcObject = stream;
         })
@@ -33,7 +33,6 @@ function capturePhoto() {
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    // Mostra o aviso para verificar a qualidade e habilita o botão de enviar
     document.querySelector("#resultText").innerText = "Verifique se os dados estão legíveis antes de enviar.";
     enableWhatsAppButton();
     document.querySelector("#result").classList.remove("hidden");
